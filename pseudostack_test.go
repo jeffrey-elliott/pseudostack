@@ -59,19 +59,19 @@ func TestPsuedostack(t *testing.T) {
 }
 
 func testOpPush() ([]string, error) {
-	ps := psuedostack{}
+	ps := Psuedostack{}
 
-	ps.push("alpha")
-	ps.push("bravo")
+	ps.Push("alpha")
+	ps.Push("bravo")
 
 	return ps.values, nil
 }
 
 func testOpPop() ([]string, error) {
-	var ps psuedostack
+	var ps Psuedostack
 	ps.values, _ = testOpPush()
 
-	popped, err := ps.pop()
+	popped, err := ps.Pop()
 	if err != nil {
 		return nil, err
 	}
@@ -80,16 +80,16 @@ func testOpPop() ([]string, error) {
 }
 
 func testOpPopError() ([]string, error) {
-	ps := psuedostack{}
-	ps.push("alpha")
+	ps := Psuedostack{}
+	ps.Push("alpha")
 
-	_, err := ps.pop()
+	_, err := ps.Pop()
 	if err != nil {
 		return nil, err
 	}
 
 	// this one should error
-	_, err = ps.pop()
+	_, err = ps.Pop()
 	if err != nil {
 		return nil, err
 	}
@@ -98,28 +98,28 @@ func testOpPopError() ([]string, error) {
 }
 
 func testOpSizePush() ([]string, error) {
-	ps := psuedostack{}
-	ps.push("alpha")
-	ps.push("bravo")
+	ps := Psuedostack{}
+	ps.Push("alpha")
+	ps.Push("bravo")
 
-	return []string{strconv.Itoa(ps.size())}, nil
+	return []string{strconv.Itoa(ps.Size())}, nil
 }
 
 func testOpSizePop() ([]string, error) {
-	ps := psuedostack{}
-	ps.push("alpha")
-	ps.push("bravo")
+	ps := Psuedostack{}
+	ps.Push("alpha")
+	ps.Push("bravo")
 
-	_, _ = ps.pop()
+	_, _ = ps.Pop()
 
-	return []string{strconv.Itoa(ps.size())}, nil
+	return []string{strconv.Itoa(ps.Size())}, nil
 }
 
 func testOpPeek() ([]string, error) {
-	var ps psuedostack
+	var ps Psuedostack
 	ps.values, _ = testOpPush()
 
-	peeked, err := ps.peek()
+	peeked, err := ps.Peek()
 	if err != nil {
 		return nil, err
 	}
